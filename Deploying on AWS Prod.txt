@@ -1,0 +1,50 @@
+Deploying on AWS Elastic Beanstalk:
+1. Prepare Your Flask App:
+Make sure your Flask app (app.py), machine learning model files (clf.pkl, tfidf.pkl), and any other necessary files (e.g., index.html) are ready. Ensure your app is set up to load the model from the correct path.
+
+2. Install AWS CLI and EB CLI:
+If you haven't already, install the AWS Command Line Interface (AWS CLI) and Elastic Beanstalk Command Line Interface (EB CLI) on your local machine.
+
+bash
+Copy code
+pip install awscli awsebcli
+3. Initialize a Git Repository:
+If your project is not already a Git repository, run the following commands:
+
+bash
+Copy code
+git init
+git add .
+git commit -m "Initial commit"
+4. Create an Elastic Beanstalk Environment:
+Navigate to your project directory and run the following commands:
+
+bash
+Copy code
+eb init -p python-3.x your-app-name
+eb create your-environment-name
+Follow the prompts to configure your environment.
+
+5. Configure Environment Variables:
+In the AWS Elastic Beanstalk console, go to your environment and navigate to Configuration > Software. Add environment variables for your Flask app.
+
+For example, if your Flask app reads a variable named MODEL_PATH, you can set this in the software configuration.
+
+6. Deploy Your App:
+Run the following command to deploy your app:
+
+bash
+Copy code
+eb deploy
+7. Open Your App:
+Once the deployment is complete, you can open your app using the provided Elastic Beanstalk URL:
+
+bash
+Copy code
+eb open
+Important Notes:
+Make sure that your Flask app specifies the correct host and port for production environments. You may need to adjust your Flask app's app.run() method to use a production-ready server.
+
+Ensure your machine learning model and dependencies are compatible with the AWS Elastic Beanstalk environment.
+
+Configure any security settings and permissions for AWS resources (e.g., S3 bucket for model files) as needed.

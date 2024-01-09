@@ -1,0 +1,50 @@
+Deploying on Heroku:
+1. Create a Heroku Account:
+If you don't have a Heroku account, sign up at Heroku.
+
+2. Install Heroku CLI:
+Download and install the Heroku Command Line Interface (CLI) from here.
+
+3. Login to Heroku:
+Open a terminal and run heroku login to log in to your Heroku account.
+
+4. Prepare Your App:
+Organize your project with necessary files including app.py, clf.pkl, tfidf.pkl, and index.html.
+
+5. Create a requirements.txt File:
+List all the dependencies required by your app. You can create this file by running pip freeze > requirements.txt.
+
+6. Initialize a Git Repository:
+If your project is not already a Git repository, run the following commands:
+
+bash
+Copy code
+git init
+git add .
+git commit -m "Initial commit"
+7. Create a Procfile:
+Create a file named Procfile (without any file extension) in your project's root directory. Add the following line:
+
+makefile
+Copy code
+web: gunicorn app:app
+This tells Heroku to use Gunicorn as the web server for your Flask app.
+
+8. Deploy to Heroku:
+Run the following commands to deploy your app:
+
+bash
+Copy code
+heroku create your-app-name
+git push heroku master
+heroku open
+This will create a new Heroku app, deploy your code, and open it in your default web browser.
+
+Important Notes:
+Ensure your machine learning model and dependencies are compatible with the environment you choose.
+
+Modify your Flask app to load the pickled model (clf.pkl and tfidf.pkl) from the correct path.
+
+Secure any sensitive information or API keys. Use environment variables for configuration.
+
+Consider setting up a custom domain for your Heroku app if needed.
